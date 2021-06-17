@@ -32,11 +32,11 @@ export class ChatComponent implements OnInit {
           let data;
           try {
             data = JSON.parse(ev.data);
-            this.messages.push(this.crypto.decrypt(data.cipherMessage, this.storage.credentials.decryptedKey));
           } catch (e) {
             this.storage.setServerCertificate(ev.data);
           }
           if (data) {
+            this.messages.push(`${data.from}: ${this.crypto.decrypt(data.cipherMessage, this.storage.credentials.decryptedKey)}`);
           }
           // const data = JSON.parse(ev.data);
           // console.log(this.storage.credentials.decryptedKey);
@@ -55,6 +55,7 @@ export class ChatComponent implements OnInit {
       command: 'new_message',
       message: this.message.value
     }));
+    this.message.reset();
   }
 
 }

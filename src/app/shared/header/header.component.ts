@@ -17,4 +17,8 @@ export class HeaderComponent implements OnInit {
     return this.storage.isAuthenticated();
   }
 
+  username(): string {
+    return this.storage.credentials.login;
+  }
+
 }
